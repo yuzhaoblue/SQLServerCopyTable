@@ -1,0 +1,8 @@
+C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\bin\Debug\GenerateScripts.exe
+C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\bin\Debug\GenerateScripts.pdb
+C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\GenerateScripts.Form1.resources
+C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\GenerateScripts.Properties.Resources.resources
+C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\GenerateScripts.csproj.GenerateResource.Cache
+C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\GenerateScripts.exe
+C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\GenerateScripts.pdb
