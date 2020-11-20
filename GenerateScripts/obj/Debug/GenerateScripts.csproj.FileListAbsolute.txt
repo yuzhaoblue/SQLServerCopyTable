@@ -6,15 +6,14 @@ C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\Generat
 C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\GenerateScripts.csproj.GenerateResource.Cache
 C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\GenerateScripts.exe
 C:\Documents and Settings\Kinnu\My Documents\Visual Studio 2008\Projects\GenerateScripts\GenerateScripts\obj\Debug\GenerateScripts.pdb
-D:\GitHub\SQLServerCopyTable\GenerateScripts\bin\Debug\GenerateScripts.exe
-D:\GitHub\SQLServerCopyTable\GenerateScripts\bin\Debug\GenerateScripts.pdb
-D:\GitHub\SQLServerCopyTable\GenerateScripts\obj\Debug\GenerateScripts.csprojAssemblyReference.cache
 D:\GitHub\SQLServerCopyTable\GenerateScripts\obj\Debug\GenerateScripts.Form1.resources
 D:\GitHub\SQLServerCopyTable\GenerateScripts\obj\Debug\GenerateScripts.Properties.Resources.resources
 D:\GitHub\SQLServerCopyTable\GenerateScripts\obj\Debug\GenerateScripts.csproj.GenerateResource.cache
 D:\GitHub\SQLServerCopyTable\GenerateScripts\obj\Debug\GenerateScripts.csproj.CoreCompileInputs.cache
 D:\GitHub\SQLServerCopyTable\GenerateScripts\obj\Debug\GenerateScripts.exe
 D:\GitHub\SQLServerCopyTable\GenerateScripts\obj\Debug\GenerateScripts.pdb
-D:\GitHub\SQLServerCopyTable\GenerateScripts\bin\Debug\GenerateScripts.exe.config
-D:\GitHub\SQLServerCopyTable\GenerateScripts\bin\Debug\bluesd7Library.dll
 D:\GitHub\SQLServerCopyTable\GenerateScripts\obj\Debug\GenerateScripts.csproj.CopyComplete
+D:\GitHub\SQLServerCopyTable\GenerateScripts\bin\GenerateScripts.exe.config
+D:\GitHub\SQLServerCopyTable\GenerateScripts\bin\GenerateScripts.exe
+D:\GitHub\SQLServerCopyTable\GenerateScripts\bin\GenerateScripts.pdb
+D:\GitHub\SQLServerCopyTable\GenerateScripts\bin\bluesd7Library.dll

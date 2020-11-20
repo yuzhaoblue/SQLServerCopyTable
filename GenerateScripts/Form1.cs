@@ -87,13 +87,20 @@ namespace GenerateScripts
                     for (int i = 0; i < tableCount; i++)
                     {
                         string fileGroup = dbName + "_" + tableName + "_" + i.ToString();
-                        sb.AppendLine("ALTER DATABASE [" + dbName + "] ADD FILEGROUP [" + fileGroup + "]");
-                        sb.AppendLine("ALTER DATABASE [" + dbName + "] ADD FILE(name='" + fileGroup + "',filename='D:\\ServerData\\" + fileGroup + ".ndf',size=8MB,FILEGROWTH=64)TO FILEGROUP [" + fileGroup + "]");
+                        if (cbIsCreateFileGroup.Checked)
+                        {
+                            sb.AppendLine("ALTER DATABASE [" + dbName + "] ADD FILEGROUP [" + fileGroup + "]");
+                            sb.AppendLine("ALTER DATABASE [" + dbName + "] ADD FILE(name='" + fileGroup + "',filename='D:\\ServerData\\" + fileGroup + ".ndf',size=8MB,FILEGROWTH=64)TO FILEGROUP [" + fileGroup + "]");
+                        }
                         foreach (DataRow dr in dt.Rows)
                         {
                             if (IsIndexRow(dr["FieldValue"].ToString()))
                             {
-                                sb.AppendLine(dr["FieldValue"].ToString().Replace(tableName, tableName + "_" + i.ToString()) + "WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [" + fileGroup + "]");
+                                sb.AppendLine(dr["FieldValue"].ToString().Replace(tableName, tableName + "_" + i.ToString()));
+                                if (cbIsCreateFileGroup.Checked)
+                                {
+                                    sb.AppendLine("WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [" + fileGroup + "]");
+                                }
                             }
                             else
                             {
@@ -104,9 +111,11 @@ namespace GenerateScripts
                         sb.Clear();
                     }
                 }
-                
+
                 LoadTable();
+                System.Windows.Forms.MessageBox.Show("分表成功", "消息");
             }
+
         }
 
         private void BtnDeleteTable_Click(object sender, EventArgs e)
@@ -131,16 +140,21 @@ namespace GenerateScripts
                     for (int i = 0; i < tableCount; i++)
                     {
                         string fileGroup = dbName + "_" + tableName + "_" + i.ToString();
-                        sb.AppendLine("DROP TABLE " + tableName + "_" + i.ToString());
-                        sb.AppendLine("ALTER DATABASE [" + dbName + "] REMOVE FILE " + fileGroup);
-                        sb.AppendLine("ALTER DATABASE [" + dbName + "] REMOVE FILEGROUP " + fileGroup);
+                        sb.AppendLine("if exists (select top 1 * from sysobjects where id = object_id('" + tableName + "_" + i.ToString() + "') and type = 'U') begin DROP TABLE " + tableName + "_" + i.ToString()+" end");
+                        if (cbIsCreateFileGroup.Checked)
+                        {
+                            sb.AppendLine("ALTER DATABASE [" + dbName + "] REMOVE FILE " + fileGroup);
+                            sb.AppendLine("ALTER DATABASE [" + dbName + "] REMOVE FILEGROUP " + fileGroup);
+                        }
                         db.ExecuteNonQueryByText(sb.ToString());
                         sb.Clear();
-                    }                    
+                    }
                     LoadTable();
+                    System.Windows.Forms.MessageBox.Show("删除分表成功", "消息");
                 }
                 else { return; }
             }
+
         }
 
         /// <summary>
@@ -159,6 +173,41 @@ namespace GenerateScripts
             }
         }
 
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (txtTableName.Text.Trim() == "")
+            {
+                System.Windows.Forms.MessageBox.Show("文件组名称是根据表名创建的，请输入表名", "验证");
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                int tableCount = Convert.ToInt32(txtTableCount.Text);
+                string tableName = txtTableName.Text;
+
+                SqlDB db = new SqlDB(txtConnString.Text);
+
+                DataTable dbNameDT = db.ExecuteDataTableByText("Select Name From Master..SysDataBases Where DbId=(Select Dbid From Master..SysProcesses Where Spid = @@spid)");
+                string dbName = dbNameDT.Rows[0][0].ToString(); //数据库名称
+
+
+                for (int i = 0; i < tableCount; i++)
+                {
+                    string fileGroup = dbName + "_" + tableName + "_" + i.ToString();
+                    sb.AppendLine("ALTER DATABASE [" + dbName + "] ADD FILEGROUP [" + fileGroup + "]");
+                    sb.AppendLine("ALTER DATABASE [" + dbName + "] ADD FILE(name='" + fileGroup + "',filename='D:\\ServerData\\" + fileGroup + ".ndf',size=8MB,FILEGROWTH=64)TO FILEGROUP [" + fileGroup + "]");
+
+                    db.ExecuteNonQueryByText(sb.ToString());
+                    sb.Clear();
+                }
+
+                System.Windows.Forms.MessageBox.Show("创建文件组成功", "消息");
+            }
+        }
     }
 }
