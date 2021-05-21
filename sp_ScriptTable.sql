@@ -506,7 +506,7 @@ BEGIN
 
             SELECT
 
-                'CREATE ' + type_desc + ' INDEX [' + [name] COLLATE SQL_Latin1_General_CP1_CI_AS + '] ON [' +  OBJECT_NAME(object_id) + '] (' +
+                'CREATE ' + type_desc + ' INDEX [' + [name] COLLATE SQL_Latin1_General_CP1_CI_AS + '] ON [' +  COALESCE(@NewTableName, @DBName + '.' + @TableSchema + '.' + @TableName) + '] (' +
 
                 REVERSE(SUBSTRING(REVERSE((
 
